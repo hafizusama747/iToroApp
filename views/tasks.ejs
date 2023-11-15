@@ -88,52 +88,28 @@
   </section>
 
   
+  <%- include('./partials/footer'); %>
   <script>
     function claimTask(taskId) {
-        // Disable the button
-        document.getElementById('claimButton_' + taskId).disabled = true;
-
-        // Show a spinner on the button
-        document.getElementById('claimButton_' + taskId).innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Claiming...';
-
-        // Call the API to create a shortened URL
-        fetch('https://shrinkearn.com/api?api=67d219dd9d6fa101eb0e236123b286efa0b60771&url=<%= process.env.BASE_URL %>/users/claim-task/' + taskId + '&alias=CustomAlias')
-            .then(response => response.json())
-            .then(data => {
-                // Check if the API request was successful and the shortened URL is available
-                if (data.success && data.url) {
-                    // Redirect to the shortened URL after a 5-second delay
-                    setTimeout(function () {
-                        window.location.href = data.url;
-                    }, 5000); // 5 seconds
-                } else {
-                    // If the API request failed or the shortened URL is not available, proceed with the original redirection
-                    setTimeout(function () {
-                        enableAndRedirect(taskId);
-                    }, 5000); // 5 seconds
-                }
-            })
-            .catch(error => {
-                console.error('Error calling the API:', error);
-                // If an error occurs, proceed with the original redirection
-                setTimeout(function () {
-                    enableAndRedirect(taskId);
-                }, 5000); // 5 seconds
-            });
-    }
-
-    function enableAndRedirect(taskId) {
+      // Disable the button
+      document.getElementById('claimButton_' + taskId).disabled = true;
+  
+       // Show a spinner on the button
+  document.getElementById('claimButton_'+ taskId).innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Claiming...';
+  
+      // Wait for 15 seconds
+      setTimeout(function () {
         // Enable the button
         document.getElementById('claimButton_' + taskId).disabled = false;
-
+  
         // Reset the button text
         document.getElementById('claimButton_' + taskId).innerText = 'Claim';
-
+  
         // Proceed with the actual button link request
         window.location.href = "<%= process.env.BASE_URL %>/users/claim-task/" + taskId;
+      }, 2000); // 15 seconds
     }
-</script>
-
+  </script>
     
     
     
