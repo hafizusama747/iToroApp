@@ -643,7 +643,7 @@ router.get('/claim-task/:id',checkAuth, async (req, res) => {
 
   if (claimed) {
     //res.status(200).json({ message: 'Task claimed successfully.' });
-    res.redirect("/users/tasks")
+    res.redirect("https://shrinkearn.com/st?api=67d219dd9d6fa101eb0e236123b286efa0b60771&url=https://itoro-production.up.railway.app/users/tasks")
   } else {
     res.status(400).json({ message: 'Task is no longer claimable.' });
   }
