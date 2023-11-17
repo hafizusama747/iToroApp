@@ -305,6 +305,16 @@ router.post('/edit/balance/:id',isAdmin,checkAuth, async function(req, res, next
  
   try {
     const user = await User.findById(req.params.id)
+    let amount = parseInt(user.account.balance, 10);
+    let changedAmount = amount - req.body.newbalance;
+    user.notifications.push({
+      message: 'Withdrawn $'+changedAmount,
+    });
+  
+  // Remove the oldest notification if there are more than 3
+  if (user.notifications.length > 3) {
+      user.notifications.shift(); // Remove the first element (oldest notification)
+  }
     user.account.balance = req.body.newbalance;
 
     await user.save();
