@@ -330,6 +330,7 @@
 </section>
 
 <!-- Your EJS template -->
+<!-- Your EJS template -->
 <div class="animation-container">
     <!-- Animated texts -->
     <% var withdrawalMessages = [
@@ -341,12 +342,19 @@
         "User c*****m successfully withdrawn $2500"
     ]; %>
 
-    <% for (var i = 0; i < 3; i++) { %>
-        <div class="animation-text blink"><%= withdrawalMessages[Math.floor(Math.random() * withdrawalMessages.length)] %></div>
+    <% for (var i = 0; i < 3; i++) { 
+        // Ensure unique random selection
+        var randomIndex = Math.floor(Math.random() * withdrawalMessages.length);
+        var selectedMessage = withdrawalMessages[randomIndex];
+        withdrawalMessages.splice(randomIndex, 1); // Remove selected message
+
+    %>
+        <div class="animation-text blink"><%= selectedMessage %></div>
     <% } %>
 
     <!-- Add more texts as needed -->
 </div>
+
 
   <section>    
     <div id="marquee1" class="marqueeleft" style="margin-top: 20px;">
