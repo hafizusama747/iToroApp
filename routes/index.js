@@ -299,7 +299,7 @@ router.get('/recharge',checkAuth, (req, res) => {
  router.get('/contactus',checkAuth, (req, res) => {
   const user = req.session.user;
 
-  res.render("recharge",{user})
+  res.render("contactus",{user})
  });
 
 
