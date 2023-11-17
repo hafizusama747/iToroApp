@@ -329,15 +329,25 @@
 
 </section>
 
-<div class="animation-container mt-4">
+<!-- Your EJS template -->
+<div class="animation-container">
     <!-- Animated texts -->
-    <div class="animation-text blink">User u*****a successfully withdrawn $3100</div>
-    <div class="animation-text blink">User h*****i successfully withdrawn $2800</div>
-    <div class="animation-text blink">User z*****n successfully withdrawn $1400</div>
+    <% var withdrawalMessages = [
+        "User u*****a successfully withdrawn $3100",
+        "User h*****i successfully withdrawn $2800",
+        "User z*****n successfully withdrawn $1400",
+        "User a*****p successfully withdrawn $2000",
+        "User b*****k successfully withdrawn $1800",
+        "User c*****m successfully withdrawn $2500"
+    ]; %>
 
+    <% for (var i = 0; i < 3; i++) { %>
+        <div class="animation-text blink"><%= withdrawalMessages[Math.floor(Math.random() * withdrawalMessages.length)] %></div>
+    <% } %>
 
     <!-- Add more texts as needed -->
-  </div>
+</div>
+
   <section>    
     <div id="marquee1" class="marqueeleft" style="margin-top: 20px;">
       <div style="width: auto;" >
