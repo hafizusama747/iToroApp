@@ -532,7 +532,7 @@ function getMaxTasksForUser(level) {
 
 function calculateExpirationTime() {
   const currentTime = moment.tz('America/New_York'); // Set the appropriate timezone
-  return currentTime.add(10, 'minutes').toDate();
+  return currentTime.add(59, 'minutes').toDate();
 }
 
 
@@ -546,7 +546,7 @@ taskGenerationStartTime.setHours(0, 18, 0, 0); // 10:15 PM in Pakistani time
 //clearTasksStartTime.setHours(1, 25, 0, 0); // 10:14 PM in Pakistani time
 
 // Schedule the job for task generation to run every 20 
-const dailyTaskGeneration = schedule.scheduleJob('*/20 * * * *', function () {
+const dailyTaskGeneration = schedule.scheduleJob('*/59 * * * *', function () {
   console.log('Scheduled task generation started.');
   generateTasksForUsers();
 });
